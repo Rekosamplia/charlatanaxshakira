@@ -12,7 +12,27 @@
 <script src="_ds/samplia-design-system-3b8c391a-4304-4ac7-a11b-0dd4cb4af9a4/_ds_bundle.js"></script>
 <script src="./image-slot.js"></script>
 <style>
-  body { margin: 0; background: var(--bg); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+  :root {
+    --samplia-red-700: #c73346; --samplia-red-100: #f1d8de;
+    --primary: #c73346; --primary-hover: #b32a3c; --primary-soft: #f1d8de;
+    --bg: #ffffff; --bg-muted: #f2f2f2;
+    --fg1: #000000; --fg2: #444444; --fg3: #999999; --fg-on-primary: #ffffff;
+    --border: #e6e6e6; --border-strong: #cccccc;
+    --font-display: "Raleway", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Raleway", "Helvetica Neue", Arial, sans-serif;
+    --fs-12: .75rem; --fs-14: .875rem; --fs-16: 1rem; --fs-18: 1.125rem; --fs-20: 1.25rem;
+    --fs-24: 1.5rem; --fs-30: 1.875rem; --fs-36: 2.25rem; --fs-48: 3rem;
+    --r-md: 8px; --r-lg: 12px; --r-xl: 20px; --r-pill: 999px;
+    --shadow-sm: 0 2px 6px rgba(15,15,15,.06), 0 1px 2px rgba(15,15,15,.04);
+    --shadow-md: 0 6px 16px rgba(15,15,15,.08), 0 2px 4px rgba(15,15,15,.04);
+    --shadow-lg: 0 16px 40px rgba(15,15,15,.10), 0 4px 8px rgba(15,15,15,.04);
+    --shadow-brand: 0 12px 28px rgba(199,51,70,.22);
+    --ease-out: cubic-bezier(.22,1,.36,1); --ease-std: cubic-bezier(.4,0,.2,1);
+    --dur-fast: 120ms; --dur-base: 220ms;
+    --maxw-page: 1240px;
+  }
+  img, iframe { max-width: 100%; }
+  body { margin: 0; background: var(--bg) url("assets/bg-textura.jpg") repeat center / 1200px auto; font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
   a { color: var(--primary); text-decoration: none; }
   a:hover { color: var(--primary-hover); }
   input, select, textarea, button { font-family: var(--font-body); }
@@ -26,42 +46,58 @@
   [data-pop][data-in="1"] { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) { [data-rise], [data-pop], [data-fade] { opacity: 1 !important; transform: none !important; transition: none !important; } }
   @media print { [data-rise], [data-pop], [data-fade] { opacity: 1 !important; transform: none !important; transition: none !important; } }
+  @media (max-width: 900px) {
+    [data-nav] { display: none !important; }
+    [data-hero-art] { display: none !important; }
+  }
+  @media (max-width: 1180px) {
+    [data-grid="packs"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  }
+  @media (max-width: 720px) {
+    [data-grid="fechas"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+    [data-gal] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; grid-auto-rows: 160px !important; }
+    [data-gal] > * { grid-column: span 1 !important; grid-row: span 1 !important; }
+    [data-hero-stats] { gap: 24px !important; }
+  }
+  @media (max-width: 520px) {
+    [data-grid="packs"], [data-grid="fechas"] { grid-template-columns: 1fr !important; }
+  }
 </style>
 </helmet>
 
-<div style="min-height:100vh;background:var(--bg);color:var(--fg1)">
+<div style="min-height:100vh;background:url('assets/bg-textura.jpg') repeat center / 1200px auto, var(--bg);color:var(--fg1)">
 
-  <header style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 32px;background:rgba(255,255,255,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)">
+  <header style="position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,3vw,32px);background:rgba(252,252,252,0.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)">
     <div style="display:flex;align-items:center;gap:14px">
       <img src="assets/logo-charlatana.avif" alt="La Charlatana" style="height:34px;width:auto;display:block">
       <span style="width:1px;height:26px;background:var(--border)"></span>
       <span class="s-caption" style="text-transform:uppercase;letter-spacing:0.14em;color:var(--fg2)">Madrid 2026</span>
     </div>
-    <nav style="display:flex;align-items:center;gap:28px">
+    <nav data-nav="1" style="display:flex;align-items:center;gap:28px">
       <a href="#fechas" style="font-size:var(--fs-14);font-weight:600;color:var(--fg1);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary)">Fechas</a>
       <a href="#packs" style="font-size:var(--fs-14);font-weight:600;color:var(--fg1);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary)">Packs</a>
       <a href="#galeria" style="font-size:var(--fs-14);font-weight:600;color:var(--fg1);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary)">Galería</a>
       <a href="#llegar" style="font-size:var(--fs-14);font-weight:600;color:var(--fg1);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary)">Cómo llegar</a>
-      <button type="button" onClick="{{ irAReserva }}" style="border:none;cursor:pointer;background:var(--primary);color:var(--fg-on-primary);border-radius:var(--r-pill);padding:12px 22px;font-size:var(--fs-14);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;box-shadow:var(--shadow-brand);transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-hover)" style-active="transform:scale(0.97)">Reserva tu mesa</button>
     </nav>
+      <button type="button" onClick="{{ irAReserva }}" style="border:none;cursor:pointer;background:var(--primary);color:var(--fg-on-primary);border-radius:var(--r-pill);padding:12px 22px;font-size:var(--fs-14);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;box-shadow:var(--shadow-brand);transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-hover)" style-active="transform:scale(0.97)">Reserva tu mesa</button>
   </header>
 
-  <section style="position:relative;overflow:hidden;background:var(--primary);color:var(--fg-on-primary);padding:96px 32px 88px">
+  <section style="position:relative;overflow:hidden;background:var(--primary);color:var(--fg-on-primary);padding:clamp(56px,9vw,96px) clamp(20px,4vw,32px) clamp(56px,8vw,88px)">
     <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.22) 1.5px, transparent 1.6px);background-size:26px 26px;opacity:0.5;pointer-events:none"></div>
-    <div style="position:relative;max-width:var(--maxw-page);margin:0 auto;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:64px;align-items:center">
+    <div style="position:relative;max-width:var(--maxw-page);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(32px,5vw,64px);align-items:center">
       <div>
         <div style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,0.5);border-radius:var(--r-pill);padding:7px 16px;margin-bottom:28px">
           <span style="width:8px;height:8px;border-radius:50%;background:#fff;animation:pulseDot 1.4s var(--ease-std) infinite"></span>
           <span style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.16em;text-transform:uppercase">Reserva anticipada abierta</span>
         </div>
-        <h1 style="margin:0;font-family:var(--font-display);font-weight:900;font-size:clamp(2.8rem,5.4vw,4.5rem);line-height:0.98;letter-spacing:-0.03em;text-wrap:balance">LA CHARLATANA<br><span style="font-weight:200">x</span> SHAKIRA</h1>
-        <p style="margin:22px 0 0;font-size:var(--fs-12);font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.82)">Las mujeres ya no lloran · Residencia Europea</p>
+        <h1 style="margin:0;font-family:var(--font-display);font-weight:900;font-style:italic;font-size:clamp(2.1rem,4.6vw,4rem);line-height:1;letter-spacing:-0.03em;text-wrap:balance">LAS MUJERES YA NO LLORAN,<br>LAS MUJERES FACTURAN<br><span style="font-weight:500;font-style:normal;font-size:0.6em;letter-spacing:0.02em">x Grupo La Charlatana</span></h1>
+        <p style="margin:22px 0 0;font-size:var(--fs-12);font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.82)">Shakira · Residencia Europea · Madrid 2026</p>
         <p style="margin:18px 0 0;max-width:46ch;font-size:var(--fs-20);line-height:1.6;color:rgba(255,255,255,0.9);text-wrap:pretty">12 noches de concierto, 12 noches de cena. Elige tu fecha, elige tu pack y siéntate: nosotros ponemos la mesa, la cerveza y el ruido.</p>
         <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:36px">
           <button type="button" onClick="{{ irAFechas }}" style="border:none;cursor:pointer;background:#fff;color:var(--primary);border-radius:var(--r-pill);padding:18px 34px;font-size:var(--fs-16);font-weight:800;letter-spacing:0.06em;text-transform:uppercase;box-shadow:0 12px 28px rgba(0,0,0,0.18);transition:transform var(--dur-fast) var(--ease-out)" style-hover="transform:translateY(-2px)" style-active="transform:scale(0.97)">Reserva tu mesa →</button>
           <button type="button" onClick="{{ irAPacks }}" style="cursor:pointer;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.7);border-radius:var(--r-pill);padding:18px 30px;font-size:var(--fs-16);font-weight:700;transition:background var(--dur-fast) var(--ease-out)" style-hover="background:rgba(255,255,255,0.14)">Ver los packs</button>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:52px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.3)">
+        <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:44px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.3)" data-hero-stats="1">
           <div>
             <div style="font-family:var(--font-display);font-weight:900;font-size:var(--fs-36);line-height:1">12</div>
             <div style="font-size:var(--fs-12);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-top:4px">Noches de concierto</div>
@@ -76,7 +112,7 @@
           </div>
         </div>
       </div>
-      <div style="position:relative">
+      <div data-hero-art="1" style="position:relative">
         <div style="position:relative;border-radius:var(--r-xl);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.28);aspect-ratio:4/5;background:#000">
           <img src="assets/plato-chuleton.jpg" alt="Chuletón con patatas" style="width:100%;height:100%;object-fit:cover;display:block">
         </div>
@@ -88,17 +124,17 @@
     </div>
   </section>
 
-  <section id="fechas" style="max-width:var(--maxw-page);margin:0 auto;padding:96px 32px 24px">
-    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap;margin-bottom:40px">
+  <section id="fechas" style="max-width:var(--maxw-page);margin:0 auto;padding:clamp(56px,8vw,96px) clamp(20px,4vw,32px) 24px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:20px;margin-bottom:44px;text-align:center">
       <div>
         <div data-rise="1" class="s-eyebrow">Paso 1 · Elige tu noche</div>
-        <h2 data-rise="1" class="s-h2" style="margin:12px 0 0;font-size:var(--fs-36)">Las 12 noches</h2>
-        <p data-rise="1" class="s-body" style="margin:12px 0 0;max-width:52ch">Cada botón es una noche de concierto. Pulsa la tuya y se rellenará sola en el formulario de reserva.</p>
+        <h2 data-rise="1" class="s-h2" style="margin:14px 0 0;font-size:clamp(2.25rem,5vw,3.75rem);font-weight:900;letter-spacing:-0.03em">Las 12 noches</h2>
+        <p data-rise="1" class="s-body" style="margin:14px auto 0;max-width:52ch">Cada botón es una noche de concierto. Pulsa la tuya y se rellenará sola en el formulario de reserva.</p>
       </div>
       <div style="font-size:var(--fs-14);font-weight:600;color:var(--fg2);border:1px solid var(--border);border-radius:var(--r-pill);padding:10px 18px">Tu noche: {{ fechaSelTxt }}</div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px">
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px" data-grid="fechas">
       <div style="grid-column:1 / -1;font-size:var(--fs-12);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--fg3)">Semana 1 · Septiembre</div>
       <button data-fade="1" type="button" onClick="{{ d0on }}" style="cursor:pointer;text-align:left;padding:20px;border-radius:var(--r-lg);background:{{ d0bg }};color:{{ d0fg }};border:1.5px solid {{ d0bd }};transition:transform var(--dur-base) var(--ease-out),border-color var(--dur-base) var(--ease-out),box-shadow var(--dur-base) var(--ease-out)" style-hover="transform:translateY(-4px);border-color:var(--primary);box-shadow:var(--shadow-md)">
         <div style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;opacity:0.65">Viernes</div>
@@ -157,14 +193,14 @@
     </div>
   </section>
 
-  <section id="packs" style="max-width:var(--maxw-page);margin:0 auto;padding:96px 32px 0">
-    <div style="margin-bottom:44px">
+  <section id="packs" style="max-width:var(--maxw-page);margin:0 auto;padding:clamp(56px,8vw,96px) clamp(20px,4vw,32px) 0">
+    <div style="margin-bottom:48px;text-align:center">
       <div data-rise="1" class="s-eyebrow">Paso 2 · Elige tu pack</div>
-      <h2 data-rise="1" class="s-h2" style="margin:12px 0 0;font-size:var(--fs-36)">Cuatro formas de cenar</h2>
-      <p data-rise="1" class="s-body" style="margin:12px 0 0;max-width:56ch">Precios orientativos por persona, salvo el Pack para 2. Bebida incluida en todos.</p>
+      <h2 data-rise="1" class="s-h2" style="margin:14px 0 0;font-size:clamp(2.25rem,5vw,3.75rem);font-weight:900;letter-spacing:-0.03em">Cuatro formas de cenar</h2>
+      <p data-rise="1" class="s-body" style="margin:14px auto 0;max-width:56ch">Precios orientativos por persona, salvo el Pack para 2. Bebida incluida en todos.</p>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px">
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px" data-grid="packs">
 
       <div data-pop="1" style="display:flex;flex-direction:column;border-radius:var(--r-lg);overflow:hidden;background:#fff;border:1.5px solid {{ p0bd }};box-shadow:var(--shadow-sm);transition:transform var(--dur-base) var(--ease-out)" style-hover="transform:translateY(-4px)">
         <div style="position:relative;aspect-ratio:16/11;overflow:hidden;background:var(--bg-muted)">
@@ -249,27 +285,26 @@
     <p class="s-caption" style="margin:20px 0 0">{{ notaPrecios }}</p>
   </section>
 
-  <section id="reserva" style="margin-top:96px;background:var(--bg-muted);padding:88px 32px">
-    <div style="max-width:var(--maxw-page);margin:0 auto;display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:56px;align-items:start">
+  <section id="reserva" style="margin-top:clamp(56px,8vw,96px);background:#000 url('assets/bg-textura.jpg') repeat center / 1200px auto;background-blend-mode:multiply;padding:clamp(56px,8vw,88px) clamp(20px,4vw,32px)">
+    <div style="max-width:var(--maxw-page);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(32px,4vw,56px);align-items:start">
       <div>
-        <div data-rise="1" class="s-eyebrow">Paso 3 · Reserva</div>
-        <h2 data-rise="1" class="s-h2" style="margin:12px 0 0;font-size:var(--fs-36)">Reserva tu mesa</h2>
-        <p class="s-body" style="margin:14px 0 0;max-width:44ch">Te confirmamos por email en menos de 24 h. Sin pago ahora: la reserva se abona en sala la noche del concierto.</p>
+        <div data-rise="1" class="s-eyebrow" style="color:var(--primary-soft)">Paso 3 · Reserva</div>
+        <h2 data-rise="1" class="s-h2" style="margin:12px 0 0;font-size:var(--fs-36);color:#fff">Reserva tu mesa</h2>
+        <p class="s-body" style="margin:14px 0 0;max-width:44ch;color:rgba(255,255,255,0.82)">Te confirmamos por email en menos de 24 h. Sin pago ahora: la reserva se abona en sala la noche del concierto.</p>
         <div style="margin-top:32px;display:flex;flex-direction:column;gap:12px">
-          <div style="display:flex;justify-content:space-between;gap:16px;background:#fff;border-radius:var(--r-md);padding:16px 18px;border:1px solid var(--border)">
-            <span style="font-size:var(--fs-14);font-weight:600;color:var(--fg2)">Noche</span>
-            <span style="font-size:var(--fs-14);font-weight:800;color:var(--fg1)">{{ fechaSelTxt }}</span>
+          <div style="display:flex;justify-content:space-between;gap:16px;background:rgba(255,255,255,0.07);border-radius:var(--r-md);padding:16px 18px;border:1px solid rgba(255,255,255,0.22)">
+            <span style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.72)">Noche</span>
+            <span style="font-size:var(--fs-14);font-weight:800;color:#fff">{{ fechaSelTxt }}</span>
           </div>
-          <div style="display:flex;justify-content:space-between;gap:16px;background:#fff;border-radius:var(--r-md);padding:16px 18px;border:1px solid var(--border)">
-            <span style="font-size:var(--fs-14);font-weight:600;color:var(--fg2)">Pack</span>
-            <span style="font-size:var(--fs-14);font-weight:800;color:var(--fg1)">{{ packSelTxt }}</span>
+          <div style="display:flex;justify-content:space-between;gap:16px;background:rgba(255,255,255,0.07);border-radius:var(--r-md);padding:16px 18px;border:1px solid rgba(255,255,255,0.22)">
+            <span style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.72)">Pack</span>
+            <span style="font-size:var(--fs-14);font-weight:800;color:#fff">{{ packSelTxt }}</span>
           </div>
-          <div style="display:flex;justify-content:space-between;gap:16px;background:#fff;border-radius:var(--r-md);padding:16px 18px;border:1px solid var(--border)">
-            <span style="font-size:var(--fs-14);font-weight:600;color:var(--fg2)">Total estimado</span>
-            <span style="font-size:var(--fs-14);font-weight:800;color:var(--primary)">{{ totalTxt }}</span>
+          <div style="display:flex;justify-content:space-between;gap:16px;background:rgba(255,255,255,0.07);border-radius:var(--r-md);padding:16px 18px;border:1px solid rgba(255,255,255,0.22)">
+            <span style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.72)">Total estimado</span>
+            <span style="font-size:var(--fs-14);font-weight:800;color:var(--primary-soft)">{{ totalTxt }}</span>
           </div>
         </div>
-        <p class="s-claim" style="margin:32px 0 0">Turning tryers into buyers.</p>
       </div>
 
       <div data-fade="1" style="background:#fff;border-radius:var(--r-xl);padding:32px;box-shadow:var(--shadow-md)">
@@ -282,7 +317,7 @@
           </div>
         </sc-if>
         <sc-if value="{{ noEnviado }}" hint-placeholder-val="{{ true }}">
-          <form onSubmit="{{ onSubmit }}" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px">
+          <form onSubmit="{{ onSubmit }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px">
             <label style="display:flex;flex-direction:column;gap:8px;grid-column:1 / -1">
               <span style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg2)">Nombre y apellidos</span>
               <input ref="{{ refNombre }}" type="text" required="true" placeholder="Tu nombre" style="border:1px solid var(--border);border-radius:var(--r-md);padding:14px 16px;font-size:var(--fs-16);color:var(--fg1)">
@@ -349,10 +384,10 @@
   </section>
 
   <sc-if value="{{ verGaleria }}" hint-placeholder-val="{{ true }}">
-    <section id="galeria" style="max-width:var(--maxw-page);margin:0 auto;padding:96px 32px 0">
+    <section id="galeria" style="max-width:var(--maxw-page);margin:0 auto;padding:clamp(56px,8vw,96px) clamp(20px,4vw,32px) 0">
       <div data-rise="1" class="s-eyebrow">La mesa</div>
       <h2 data-rise="1" class="s-h2" style="margin:12px 0 40px;font-size:var(--fs-36)">Lo que vas a cenar</h2>
-      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:220px;gap:16px">
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(150px,18vw,220px);gap:16px" data-gal="1">
         <div style="grid-column:span 2;grid-row:span 2;border-radius:var(--r-lg);overflow:hidden;background:var(--bg-muted)">
           <img src="assets/plato-chuleton.jpg" alt="Chuletón al punto con patatas" style="width:100%;height:100%;object-fit:cover;display:block">
         </div>
@@ -370,8 +405,8 @@
   </sc-if>
 
   <sc-if value="{{ verMapa }}" hint-placeholder-val="{{ true }}">
-    <section id="llegar" style="max-width:var(--maxw-page);margin:0 auto;padding:96px 32px 0">
-      <div style="display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);gap:48px;align-items:center">
+    <section id="llegar" style="max-width:var(--maxw-page);margin:0 auto;padding:clamp(56px,8vw,96px) clamp(20px,4vw,32px) 0">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,4vw,48px);align-items:center">
         <div>
           <div data-rise="1" class="s-eyebrow">Cómo llegar</div>
           <h2 data-rise="1" class="s-h2" style="margin:12px 0 20px;font-size:var(--fs-36)">Cena aquí, concierto después</h2>
@@ -411,7 +446,7 @@
     </section>
   </sc-if>
 
-  <section style="margin-top:96px;background:var(--primary);color:var(--fg-on-primary);padding:80px 32px;position:relative;overflow:hidden">
+  <section style="margin-top:clamp(56px,8vw,96px);background:var(--primary);color:var(--fg-on-primary);padding:clamp(56px,8vw,80px) clamp(20px,4vw,32px);position:relative;overflow:hidden">
     <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.22) 1.5px, transparent 1.6px);background-size:26px 26px;opacity:0.45;pointer-events:none"></div>
     <div style="position:relative;max-width:var(--maxw-page);margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:32px">
       <div>
@@ -422,7 +457,7 @@
     </div>
   </section>
 
-  <footer style="padding:44px 32px;border-top:1px solid var(--border)">
+  <footer style="padding:40px clamp(20px,4vw,32px);border-top:1px solid var(--border)">
     <div style="max-width:var(--maxw-page);margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px">
       <img src="assets/logo-charlatana.avif" alt="La Charlatana" style="height:30px;width:auto;display:block">
       <div style="display:flex;flex-wrap:wrap;gap:24px">
