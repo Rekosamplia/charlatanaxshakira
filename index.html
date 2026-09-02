@@ -328,15 +328,6 @@
       </div>
 
       <div data-fade="1" style="background:#fff;border-radius:var(--r-xl);padding:32px;box-shadow:var(--shadow-md)">
-        <sc-if value="{{ enviado }}" hint-placeholder-val="{{ false }}">
-          <div style="display:flex;flex-direction:column;gap:18px;align-items:flex-start;padding:24px 0">
-            <div style="width:52px;height:52px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:var(--fs-24);font-weight:800">✓</div>
-            <h3 class="s-h3" style="margin:0;font-size:var(--fs-30)">Mesa apuntada, {{ nombreEnviado }}</h3>
-            <p class="s-body" style="margin:0">Te hemos reservado {{ resumenTxt }}. Recibirás la confirmación en {{ emailEnviado }} en menos de 24 h.</p>
-            <button type="button" onClick="{{ otraReserva }}" style="cursor:pointer;background:transparent;border:1.5px solid var(--fg1);color:var(--fg1);border-radius:var(--r-pill);padding:13px 22px;font-size:var(--fs-14);font-weight:700">Hacer otra reserva</button>
-          </div>
-        </sc-if>
-        <sc-if value="{{ noEnviado }}" hint-placeholder-val="{{ true }}">
           <form onSubmit="{{ onSubmit }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px">
             <label style="display:flex;flex-direction:column;gap:8px;grid-column:1 / -1">
               <span style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg2)">Nombre y apellidos</span>
@@ -390,7 +381,6 @@
             <button type="submit" style="grid-column:1 / -1;border:none;cursor:pointer;background:var(--primary);color:var(--fg-on-primary);border-radius:var(--r-pill);padding:18px 24px;font-size:var(--fs-16);font-weight:800;letter-spacing:0.06em;text-transform:uppercase;box-shadow:var(--shadow-brand);transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-hover)" style-active="transform:scale(0.97)">{{ ctaTexto }}</button>
             <p class="s-caption" style="margin:0;grid-column:1 / -1">Plazas limitadas por noche. Al enviar aceptas que te contactemos para confirmar la mesa.</p>
           </form>
-        </sc-if>
       </div>
     </div>
   </section>
@@ -477,6 +467,42 @@
       <span style="font-size:var(--fs-12);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.6)">© 2026 Grupo La Charlatana · Madrid</span>
     </div>
   </footer>
+
+  <sc-if value="{{ enviado }}" hint-placeholder-val="{{ false }}">
+    <div role="dialog" aria-modal="true" aria-labelledby="modal-title" onClick="{{ onBackdropClick }}" style="position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(10,4,4,0.72);backdrop-filter:blur(6px)">
+      <div style="position:relative;width:100%;max-width:460px;max-height:calc(100vh - 40px);overflow-y:auto;background:#fff;border-radius:var(--r-xl);padding:36px 32px;box-shadow:var(--shadow-lg)">
+        <button type="button" onClick="{{ cerrarModal }}" aria-label="Cerrar" style="position:absolute;top:16px;right:16px;cursor:pointer;width:34px;height:34px;border-radius:50%;border:none;background:var(--bg-muted);color:var(--fg1);font-size:var(--fs-18);line-height:1" style-hover="background:var(--primary-soft);color:var(--primary)">×</button>
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:var(--fs-24);font-weight:800">✓</div>
+        <h3 id="modal-title" class="s-h3" style="margin:18px 0 0;font-size:var(--fs-30)">Mesa apuntada, {{ nombreEnviado }}</h3>
+        <p class="s-body" style="margin:10px 0 0">Te hemos reservado {{ resumenTxt }}. Recibirás la confirmación en {{ emailEnviado }} en menos de 24 h.</p>
+        <div style="margin-top:24px;display:flex;flex-direction:column;gap:10px;border-top:1px dashed var(--border-strong);padding-top:20px">
+          <div style="display:flex;justify-content:space-between;gap:16px">
+            <span style="font-size:var(--fs-14);color:var(--fg2)">Noche</span>
+            <span style="font-size:var(--fs-14);font-weight:700;color:var(--fg1)">{{ fechaEnviada }}</span>
+          </div>
+          <sc-for list="{{ lineasEnviadas }}" as="l" hint-placeholder-count="1">
+            <div style="display:flex;justify-content:space-between;gap:16px">
+              <span style="font-size:var(--fs-14);color:var(--fg2)">{{ l.etiqueta }}</span>
+              <span style="font-size:var(--fs-14);font-weight:700;color:var(--fg1)">{{ l.importe }}</span>
+            </div>
+          </sc-for>
+          <div style="display:flex;justify-content:space-between;gap:16px">
+            <span style="font-size:var(--fs-14);color:var(--fg2)">Comensales</span>
+            <span style="font-size:var(--fs-14);font-weight:700;color:var(--fg1)">{{ comensalesEnviados }}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--border);padding-top:10px;margin-top:4px">
+            <span style="font-size:var(--fs-14);font-weight:700;color:var(--fg1)">Total estimado</span>
+            <span style="font-size:var(--fs-16);font-weight:800;color:var(--primary)">{{ totalEnviado }}</span>
+          </div>
+        </div>
+        <p class="s-caption" style="margin:18px 0 0">Hemos abierto tu app de correo con este resumen listo para enviar a c.roldan@samplia.com. Si no se ha abierto, usa el botón de abajo.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px">
+          <a href="{{ mailtoHref }}" style="cursor:pointer;text-decoration:none;text-align:center;flex:1;background:var(--primary);color:#fff;border-radius:var(--r-pill);padding:13px 20px;font-size:var(--fs-14);font-weight:700" style-hover="background:var(--primary-hover)">Reenviar por email</a>
+          <button type="button" onClick="{{ otraReserva }}" style="cursor:pointer;flex:1;background:transparent;border:1.5px solid var(--fg1);color:var(--fg1);border-radius:var(--r-pill);padding:13px 20px;font-size:var(--fs-14);font-weight:700">Hacer otra reserva</button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
 </div>
 
 </x-dc>
@@ -528,6 +554,53 @@ class Component extends DCLogic {
     return PACKS.reduce((n, p, i) => n + this.state.qty[i] * (p.porPersona ? 1 : 2), 0);
   }
 
+  comensalesLabel(n) {
+    return n + " comensal" + (n === 1 ? "" : "es");
+  }
+
+  buildMailtoHref(datos) {
+    if (!datos) return "mailto:c.roldan@samplia.com";
+    const subject = "Reserva La Charlatana – " + datos.fecha + " – " + datos.nombre;
+    const lines = [
+      "Nueva reserva desde la web de La Charlatana",
+      "",
+      "Nombre: " + datos.nombre,
+      "Email: " + datos.email,
+      "Teléfono: " + datos.telefono,
+      "Noche: " + datos.fecha,
+      "",
+      "Packs:"
+    ].concat(
+      datos.lineas.length ? datos.lineas.map(l => "  - " + l.etiqueta + " (" + l.importe + ")") : ["  (ninguno)"]
+    ).concat([
+      "",
+      "Comensales: " + datos.comensales,
+      "Total estimado: " + datos.total
+    ]);
+    if (datos.nota) lines.push("", "Nota: " + datos.nota);
+    return "mailto:c.roldan@samplia.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n"));
+  }
+
+  openMailClient(datos) {
+    const a = document.createElement("a");
+    a.href = this.buildMailtoHref(datos);
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  lockScroll(lock) {
+    if (lock) {
+      const barW = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = "hidden";
+      if (barW > 0) document.body.style.paddingRight = barW + "px";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
+    }
+  }
+
   componentDidMount() {
     const SEL = '[data-rise]:not([data-in]),[data-pop]:not([data-in]),[data-fade]:not([data-in])';
     this._pending = () => document.querySelectorAll(SEL);
@@ -548,13 +621,27 @@ class Component extends DCLogic {
     this._sweep();
     window.addEventListener('scroll', this._onScroll, { passive: true });
     this._safety = setTimeout(() => { this._pending().forEach(el => el.setAttribute('data-in', '1')); }, 2500);
+
+    this._onKeydown = e => {
+      if (e.key === 'Escape' && this.state.enviado) this.setState({ enviado: false });
+    };
+    document.addEventListener('keydown', this._onKeydown);
+    this._lastEnviado = this.state.enviado;
   }
 
-  componentDidUpdate() { if (this._sweep) this._sweep(); }
+  componentDidUpdate(prevProps) {
+    if (this._sweep) this._sweep();
+    if (this._lastEnviado !== this.state.enviado) {
+      this.lockScroll(this.state.enviado);
+      this._lastEnviado = this.state.enviado;
+    }
+  }
 
   componentWillUnmount() {
     if (this._stop) this._stop();
     if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._onKeydown) document.removeEventListener('keydown', this._onKeydown);
+    if (this.state.enviado) this.lockScroll(false);
   }
 
   scrollA(id) {
@@ -591,20 +678,39 @@ class Component extends DCLogic {
       irAPacks: () => this.scrollA("packs"),
       onFechaChange: e => this.setState({ fecha: e.target.value }),
       otraReserva: () => this.setState({ enviado: false, datos: null, qty: [0, 0, 0, 0], fecha: "" }),
+      cerrarModal: () => this.setState({ enviado: false }),
+      onBackdropClick: e => { if (e.target === e.currentTarget) this.setState({ enviado: false }); },
       lineas: lineas,
       lineasForm: lineas,
       sinPacks: totalQty === 0,
-      comensalesTxt: totalQty ? (this.comensales() + " comensales") : "—",
+      comensalesTxt: totalQty ? this.comensalesLabel(this.comensales()) : "—",
       onSubmit: e => {
         e.preventDefault();
         const nombre = this.refNombre.current ? this.refNombre.current.value : "";
         const email = this.refEmail.current ? this.refEmail.current.value : "";
+        const telefono = this.refTel.current ? this.refTel.current.value : "";
+        const nota = this.refNota.current ? this.refNota.current.value : "";
         if (!this.state.fecha || totalQty === 0) { this.scrollA(this.state.fecha ? "packs" : "fechas"); return; }
-        this.setState({ enviado: true, datos: { nombre, email } });
+        const datos = {
+          nombre, email, telefono, nota,
+          fecha: this.state.fecha,
+          lineas: lineas,
+          comensales: this.comensales(),
+          total: this.total()
+        };
+        this.setState({ enviado: true, datos });
+        this.openMailClient(datos);
       },
       nombreEnviado: this.state.datos ? (this.state.datos.nombre || "").split(" ")[0] : "",
       emailEnviado: this.state.datos ? this.state.datos.email : "",
-      resumenTxt: (lineas.map(l => l.etiqueta).join(", ") || "tu pack") + " para el " + this.state.fecha
+      resumenTxt: this.state.datos
+        ? ((this.state.datos.lineas.map(l => l.etiqueta).join(", ") || "tu pack") + " para el " + this.state.datos.fecha)
+        : "",
+      fechaEnviada: this.state.datos ? this.state.datos.fecha : "",
+      lineasEnviadas: this.state.datos ? this.state.datos.lineas : [],
+      comensalesEnviados: this.state.datos ? this.comensalesLabel(this.state.datos.comensales) : "",
+      totalEnviado: this.state.datos ? this.state.datos.total : "—",
+      mailtoHref: this.buildMailtoHref(this.state.datos)
     };
 
     FECHAS.forEach((f, i) => {
