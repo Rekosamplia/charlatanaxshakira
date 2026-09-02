@@ -67,16 +67,41 @@
   @media (max-width: 520px) {
     [data-grid="packs"], [data-grid="fechas"] { grid-template-columns: 1fr !important; }
   }
+  @media (max-width: 640px) {
+    [data-header] { padding-left: 14px !important; padding-right: 14px !important; gap: 8px !important; }
+    [data-brand] { gap: 8px !important; }
+    [data-logo] { height: 26px !important; }
+    [data-divider] { height: 18px !important; }
+    [data-madrid] { font-size: 9px !important; letter-spacing: 0.08em !important; }
+    [data-cta-reserva] { padding: 9px 14px !important; font-size: 11px !important; letter-spacing: 0.03em !important; }
+  }
+  @media (max-width: 400px) {
+    [data-header] { gap: 6px !important; }
+    [data-brand] { gap: 6px !important; }
+    [data-logo] { height: 22px !important; }
+    [data-madrid] { font-size: 8px !important; letter-spacing: 0.05em !important; }
+    [data-cta-reserva] { padding: 8px 11px !important; font-size: 10px !important; }
+  }
+  @media (max-width: 640px) {
+    [data-hero-stats] { flex-wrap: nowrap !important; gap: 12px !important; }
+    [data-hero-stats] .stat-num { font-size: 1.35rem !important; white-space: nowrap; }
+    [data-hero-stats] .stat-label { font-size: 9.5px !important; letter-spacing: 0.06em !important; }
+  }
+  @media (max-width: 380px) {
+    [data-hero-stats] { gap: 8px !important; }
+    [data-hero-stats] .stat-num { font-size: 1.15rem !important; }
+    [data-hero-stats] .stat-label { font-size: 8.5px !important; letter-spacing: 0.03em !important; }
+  }
 </style>
 </helmet>
 
 <div style="min-height:100vh;background:url('assets/bg-textura.jpg') repeat center / 1200px auto, var(--bg);color:var(--fg1)">
 
-  <header style="position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:16px clamp(16px,3vw,32px);background:rgba(12,8,8,0.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.08)">
-    <div style="display:flex;align-items:center;gap:14px">
-      <img src="assets/logo-charlatana.avif" alt="La Charlatana" style="height:36px;width:auto;display:block">
-      <span style="width:1px;height:26px;background:rgba(255,255,255,0.18)"></span>
-      <span class="s-caption" style="text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.62)">Madrid 2026</span>
+  <header data-header="1" style="position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:16px clamp(16px,3vw,32px);background:rgba(12,8,8,0.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.08)">
+    <div data-brand="1" style="display:flex;align-items:center;gap:14px;min-width:0">
+      <img data-logo="1" src="assets/logo-charlatana.avif" alt="La Charlatana" style="height:36px;width:auto;display:block;flex:none">
+      <span data-divider="1" style="width:1px;height:26px;background:rgba(255,255,255,0.18);flex:none"></span>
+      <span data-madrid="1" class="s-caption" style="text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.62);white-space:nowrap">Madrid 2026</span>
     </div>
     <nav data-nav="1" style="display:flex;align-items:center;gap:30px">
       <a href="#fechas" style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.88);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary-soft)">Fechas</a>
@@ -84,7 +109,7 @@
       <a href="#galeria" style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.88);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary-soft)">Galería</a>
       <a href="#llegar" style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.88);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary-soft)">Cómo llegar</a>
     </nav>
-      <button type="button" onClick="{{ irAReserva }}" style="border:none;cursor:pointer;background:var(--primary);color:var(--fg-on-primary);border-radius:var(--r-pill);padding:13px 24px;font-size:var(--fs-14);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;box-shadow:var(--shadow-brand);transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-hover)" style-active="transform:scale(0.97)">Reserva tu mesa</button>
+      <button data-cta-reserva="1" type="button" onClick="{{ irAReserva }}" style="border:none;cursor:pointer;background:var(--primary);color:var(--fg-on-primary);border-radius:var(--r-pill);padding:13px 24px;font-size:var(--fs-14);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;box-shadow:var(--shadow-brand);transition:background var(--dur-fast) var(--ease-out);white-space:nowrap;flex:none">Reserva tu mesa</button>
   </header>
 
   <section data-hero="1" style="position:relative;overflow:hidden;min-height:clamp(600px,90vh,880px);display:flex;align-items:flex-end;color:#fff">
@@ -105,17 +130,17 @@
           <button type="button" onClick="{{ irAPacks }}" style="cursor:pointer;background:rgba(0,0,0,0.25);color:#fff;border:1.5px solid rgba(255,255,255,0.7);border-radius:var(--r-pill);padding:18px 30px;font-size:var(--fs-16);font-weight:700;backdrop-filter:blur(4px);transition:background var(--dur-fast) var(--ease-out)" style-hover="background:rgba(255,255,255,0.18)">Ver los packs</button>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,40px);margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.25)" data-hero-stats="1">
-          <div>
-            <div style="font-family:var(--font-display);font-weight:900;font-size:var(--fs-36);line-height:1">12</div>
-            <div style="font-size:var(--fs-12);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-top:4px">Noches de concierto</div>
+          <div style="min-width:0">
+            <div class="stat-num" style="font-family:var(--font-display);font-weight:900;font-size:var(--fs-36);line-height:1">12</div>
+            <div class="stat-label" style="font-size:var(--fs-12);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-top:4px">Noches de concierto</div>
           </div>
-          <div>
-            <div style="font-family:var(--font-display);font-weight:900;font-size:var(--fs-36);line-height:1">4</div>
-            <div style="font-size:var(--fs-12);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-top:4px">Packs de cena</div>
+          <div style="min-width:0">
+            <div class="stat-num" style="font-family:var(--font-display);font-weight:900;font-size:var(--fs-36);line-height:1">4</div>
+            <div class="stat-label" style="font-size:var(--fs-12);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-top:4px">Packs de cena</div>
           </div>
-          <div>
-            <div style="font-family:var(--font-display);font-weight:900;font-size:var(--fs-36);line-height:1">19,90 €</div>
-            <div style="font-size:var(--fs-12);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-top:4px">Desde, por persona</div>
+          <div style="min-width:0">
+            <div class="stat-num" style="font-family:var(--font-display);font-weight:900;font-size:var(--fs-36);line-height:1">19,90 €</div>
+            <div class="stat-label" style="font-size:var(--fs-12);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-top:4px">Desde, por persona</div>
           </div>
         </div>
       </div>
@@ -303,7 +328,7 @@
     <div style="max-width:var(--maxw-page);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(32px,4vw,56px);align-items:start">
       <div>
         <div data-rise="1" class="s-eyebrow" style="color:var(--primary-soft)">Paso 3 · Reserva</div>
-        <h2 data-rise="1" class="s-h2" style="margin:12px 0 0;font-size:var(--fs-36);color:#fff">Reserva tu mesa</h2>
+        <h2 data-rise="1" class="s-h2" style="margin:12px 0 0;font-size:var(--fs-36);color:#fff">Tu mesa ya casi está lista</h2>
         <p class="s-body" style="margin:14px 0 0;max-width:44ch;color:rgba(255,255,255,0.82)">Te confirmamos por email en menos de 24 h. Sin pago ahora: la reserva se abona en sala la noche del concierto.</p>
         <div style="margin-top:32px;display:flex;flex-direction:column;gap:12px">
           <div style="display:flex;justify-content:space-between;gap:16px;background:rgba(255,255,255,0.07);border-radius:var(--r-md);padding:16px 18px;border:1px solid rgba(255,255,255,0.22)">
@@ -414,21 +439,30 @@
           <h2 data-rise="1" class="s-h2" style="margin:12px 0 20px;font-size:var(--fs-36)">Cena aquí, concierto después</h2>
           <dl data-rise="1" style="margin:0;display:flex;flex-direction:column;gap:18px">
             <div style="display:flex;gap:12px">
-              <span style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--fg1);color:#fff;display:grid;place-items:center;font-size:var(--fs-12);font-weight:800">1</span>
+              <span style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--fg2);color:#fff;display:grid;place-items:center;font-size:var(--fs-12);font-weight:800">1</span>
               <div>
-                <dt style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg3)">El concierto</dt>
-                <dd style="margin:6px 0 0;font-size:var(--fs-18);font-weight:600;color:var(--fg1)">Estadio Shakira · Iberdrola Music</dd>
-                <dd style="margin:4px 0 0;font-size:var(--fs-14);color:var(--fg2)">Las mujeres ya no lloran · Residencia Europea</dd>
-                <dd style="margin:4px 0 0;font-size:var(--fs-14)"><a href="https://maps.app.goo.gl/fyaS6nXkLWqjgsEi6" target="_blank" rel="noopener">Abrir en Google Maps →</a></dd>
+                <dt style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg3)">Metro / Cercanías</dt>
+                <dd style="margin:6px 0 0;font-size:var(--fs-18);font-weight:600;color:var(--fg1)">Villaverde Alto</dd>
+                <dd style="margin:4px 0 0;font-size:var(--fs-14);color:var(--fg2)">Metro L3 · Cercanías C5</dd>
+                <dd style="margin:4px 0 0;font-size:var(--fs-14)"><a href="https://maps.app.goo.gl/bo1mfbEPtTxdf76V7" target="_blank" rel="noopener">Abrir en Google Maps →</a></dd>
               </div>
             </div>
             <div style="display:flex;gap:12px">
               <span style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-size:var(--fs-12);font-weight:800">2</span>
               <div>
-                <dt style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg3)">Tu mesa</dt>
+                <dt style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg3)">Restaurante La Charlatana</dt>
                 <dd style="margin:6px 0 0;font-size:var(--fs-18);font-weight:600;color:var(--fg1)">Av. Real de Pinto, 87</dd>
                 <dd style="margin:4px 0 0;font-size:var(--fs-14);color:var(--fg2)">Villaverde · 28021 Madrid</dd>
                 <dd style="margin:4px 0 0;font-size:var(--fs-14)"><a href="https://maps.app.goo.gl/fs5ddUUHrrUaU9b46" target="_blank" rel="noopener">Abrir en Google Maps →</a></dd>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px">
+              <span style="flex:none;width:26px;height:26px;border-radius:50%;background:var(--fg1);color:#fff;display:grid;place-items:center;font-size:var(--fs-12);font-weight:800">3</span>
+              <div>
+                <dt style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg3)">El concierto</dt>
+                <dd style="margin:6px 0 0;font-size:var(--fs-18);font-weight:600;color:var(--fg1)">Estadio Shakira · Iberdrola Music</dd>
+                <dd style="margin:4px 0 0;font-size:var(--fs-14);color:var(--fg2)">Las mujeres ya no lloran · Residencia Europea</dd>
+                <dd style="margin:4px 0 0;font-size:var(--fs-14)"><a href="https://maps.app.goo.gl/fyaS6nXkLWqjgsEi6" target="_blank" rel="noopener">Abrir en Google Maps →</a></dd>
               </div>
             </div>
             <div style="display:flex;gap:12px">
@@ -495,9 +529,9 @@
             <span style="font-size:var(--fs-16);font-weight:800;color:var(--primary)">{{ totalEnviado }}</span>
           </div>
         </div>
-        <p class="s-caption" style="margin:18px 0 0">Hemos abierto tu app de correo con este resumen listo para enviar a c.roldan@samplia.com. Si no se ha abierto, usa el botón de abajo.</p>
+        <p class="s-caption" style="margin:18px 0 0">¿Quieres guardar una copia? Pulsa el botón para enviarte este resumen por email.</p>
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:16px">
-          <a href="{{ mailtoHref }}" target="_blank" rel="noopener" style="cursor:pointer;text-decoration:none;text-align:center;flex:1;background:var(--primary);color:#fff;border-radius:var(--r-pill);padding:13px 20px;font-size:var(--fs-14);font-weight:700" style-hover="background:var(--primary-hover)">Reenviar por email</a>
+          <a href="{{ mailtoHref }}" target="_blank" rel="noopener" style="cursor:pointer;text-decoration:none;text-align:center;flex:1;background:var(--primary);color:#fff;border-radius:var(--r-pill);padding:13px 20px;font-size:var(--fs-14);font-weight:700" style-hover="background:var(--primary-hover)">Enviar por email</a>
           <button type="button" onClick="{{ otraReserva }}" style="cursor:pointer;flex:1;background:transparent;border:1.5px solid var(--fg1);color:var(--fg1);border-radius:var(--r-pill);padding:13px 20px;font-size:var(--fs-14);font-weight:700">Hacer otra reserva</button>
         </div>
       </div>
@@ -514,6 +548,10 @@ const PACKS = [
   { n: "Pack para 2", p: 44.9, porPersona: false },
   { n: "Pack Glam", p: 29.9, porPersona: true }
 ];
+// URL del Web App de Apps Script publicado sobre el Google Sheet de reservas.
+// Vacío por defecto: hasta rellenarla, las reservas siguen funcionando pero
+// no se registran en ninguna hoja. Ver instrucciones de despliegue aparte.
+const SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbw0F3wAcnTU4mgHVSPPoLNjxuOhZ6yZxA-R1L6mgkbdLGQtNMSgVedJ1hVLgY-MV0V7-g/exec";
 
 class Component extends DCLogic {
   state = { fecha: "", qty: [0, 0, 0, 0], enviado: false, datos: null };
@@ -559,10 +597,10 @@ class Component extends DCLogic {
   }
 
   buildMailtoHref(datos) {
-    if (!datos) return "mailto:c.roldan@samplia.com";
-    const subject = "Reserva La Charlatana – " + datos.fecha + " – " + datos.nombre;
+    if (!datos) return "mailto:";
+    const subject = "Tu reserva en La Charlatana – " + datos.fecha;
     const lines = [
-      "Nueva reserva desde la web de La Charlatana",
+      "Resumen de tu reserva en La Charlatana",
       "",
       "Nombre: " + datos.nombre,
       "Email: " + datos.email,
@@ -578,17 +616,29 @@ class Component extends DCLogic {
       "Total estimado: " + datos.total
     ]);
     if (datos.nota) lines.push("", "Nota: " + datos.nota);
-    return "mailto:c.roldan@samplia.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n"));
+    return "mailto:" + (datos.email || "") + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n"));
   }
 
-  openMailClient(datos) {
-    const a = document.createElement("a");
-    a.href = this.buildMailtoHref(datos);
-    a.target = "_blank";
-    a.rel = "noopener";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+  sendToSheet(datos) {
+    if (!SHEET_WEBAPP_URL) return;
+    const payload = {
+      fecha: datos.fecha,
+      nombre: datos.nombre,
+      email: datos.email,
+      telefono: datos.telefono,
+      packs: datos.lineas.map(l => l.etiqueta).join(", "),
+      comensales: datos.comensales,
+      total: datos.total,
+      nota: datos.nota || ""
+    };
+    // no-cors + text/plain: evita el preflight CORS que el Web App de Apps
+    // Script no responde bien; doPost lee igualmente e.postData.contents.
+    fetch(SHEET_WEBAPP_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    }).catch(() => {});
   }
 
   lockScroll(lock) {
@@ -700,7 +750,7 @@ class Component extends DCLogic {
           total: this.total()
         };
         this.setState({ enviado: true, datos });
-        this.openMailClient(datos);
+        this.sendToSheet(datos);
       },
       nombreEnviado: this.state.datos ? (this.state.datos.nombre || "").split(" ")[0] : "",
       emailEnviado: this.state.datos ? this.state.datos.email : "",
@@ -719,7 +769,7 @@ class Component extends DCLogic {
       v["d" + i + "bg"] = sel ? "var(--primary)" : "#fff";
       v["d" + i + "fg"] = sel ? "var(--fg-on-primary)" : "var(--fg1)";
       v["d" + i + "bd"] = sel ? "var(--primary)" : "var(--border)";
-      v["d" + i + "on"] = () => this.setState({ fecha: f });
+      v["d" + i + "on"] = () => { this.setState({ fecha: f }); this.scrollA("packs"); };
     });
 
     PACKS.forEach((p, i) => {
