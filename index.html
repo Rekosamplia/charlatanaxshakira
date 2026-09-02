@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="_ds/samplia-design-system-3b8c391a-4304-4ac7-a11b-0dd4cb4af9a4/colors_and_type.css">
 <script src="_ds/samplia-design-system-3b8c391a-4304-4ac7-a11b-0dd4cb4af9a4/_ds_bundle.js"></script>
 <script src="./image-slot.js"></script>
+<link rel="icon" href="assets/logo-charlatana.avif" type="image/avif">
+<link rel="apple-touch-icon" href="assets/logo-charlatana.avif">
 <style>
   :root {
     --samplia-red-700: #c73346; --samplia-red-100: #f1d8de;
@@ -90,8 +92,7 @@
           <span style="width:8px;height:8px;border-radius:50%;background:#fff;animation:pulseDot 1.4s var(--ease-std) infinite"></span>
           <span style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.16em;text-transform:uppercase">Reserva anticipada abierta</span>
         </div>
-        <h1 style="margin:0;font-family:var(--font-display);font-weight:900;font-style:italic;font-size:clamp(2.1rem,4.6vw,4rem);line-height:1;letter-spacing:-0.03em;text-wrap:balance">LAS MUJERES YA NO LLORAN,<br>LAS MUJERES FACTURAN<br><span style="font-weight:500;font-style:normal;font-size:0.6em;letter-spacing:0.02em">x Grupo La Charlatana</span></h1>
-        <p style="margin:22px 0 0;font-size:var(--fs-12);font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.82)">Shakira · Residencia Europea · Madrid 2026</p>
+        <h1 style="margin:0;font-family:var(--font-display);font-weight:900;font-style:italic;font-size:clamp(2.1rem,4.6vw,4rem);line-height:1;letter-spacing:-0.03em;text-wrap:balance">PA’PASARLA<br>BIEN RICO<br><span style="font-weight:500;font-style:normal;font-size:0.6em;letter-spacing:0.02em">x Grupo La Charlatana</span></h1>
         <p style="margin:18px 0 0;max-width:46ch;font-size:var(--fs-20);line-height:1.6;color:rgba(255,255,255,0.9);text-wrap:pretty">12 noches de concierto, 12 noches de cena. Elige tu fecha, elige tu pack y siéntate: nosotros ponemos la mesa, la cerveza y el ruido.</p>
         <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:36px">
           <button type="button" onClick="{{ irAFechas }}" style="border:none;cursor:pointer;background:#fff;color:var(--primary);border-radius:var(--r-pill);padding:18px 34px;font-size:var(--fs-16);font-weight:800;letter-spacing:0.06em;text-transform:uppercase;box-shadow:0 12px 28px rgba(0,0,0,0.18);transition:transform var(--dur-fast) var(--ease-out)" style-hover="transform:translateY(-2px)" style-active="transform:scale(0.97)">Reserva tu mesa →</button>
@@ -218,7 +219,11 @@
             <li style="display:flex;gap:10px;font-size:var(--fs-14);line-height:1.45;color:var(--fg2)"><span style="color:var(--primary);font-weight:800">·</span>Acompañamiento a elegir</li>
             <li style="display:flex;gap:10px;font-size:var(--fs-14);line-height:1.45;color:var(--fg2)"><span style="color:var(--primary);font-weight:800">·</span>Cerveza de importación</li>
           </ul>
-          <button type="button" onClick="{{ p0on }}" style="cursor:pointer;border:1.5px solid var(--fg1);background:{{ p0bg }};color:{{ p0fg }};border-radius:var(--r-pill);padding:13px 20px;font-size:var(--fs-14);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;transition:background var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary);border-color:var(--primary);color:#fff" style-active="transform:scale(0.97)">{{ p0txt }}</button>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;border:1.5px solid var(--border);border-radius:var(--r-pill);padding:6px 8px">
+            <button type="button" onClick="{{ p0dec }}" aria-label="Quitar uno" style="cursor:pointer;width:38px;height:38px;flex:none;border-radius:50%;border:none;background:var(--bg-muted);color:var(--fg1);font-size:var(--fs-20);font-weight:700;line-height:1;transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-soft);color:var(--primary)" style-active="transform:scale(0.94)">−</button>
+            <span style="font-size:var(--fs-14);font-weight:700;color:{{ p0fg }};text-align:center;flex:1">{{ p0txt }}</span>
+            <button type="button" onClick="{{ p0inc }}" aria-label="Añadir uno" style="cursor:pointer;width:38px;height:38px;flex:none;border-radius:50%;border:none;background:var(--primary);color:#fff;font-size:var(--fs-20);font-weight:700;line-height:1;transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-hover)" style-active="transform:scale(0.94)">+</button>
+          </div>
         </div>
       </div>
 
@@ -238,7 +243,11 @@
             <li style="display:flex;gap:10px;font-size:var(--fs-14);line-height:1.45;color:var(--fg2)"><span style="color:var(--primary);font-weight:800">·</span>Patatas</li>
             <li style="display:flex;gap:10px;font-size:var(--fs-14);line-height:1.45;color:var(--fg2)"><span style="color:var(--primary);font-weight:800">·</span>2 cervezas</li>
           </ul>
-          <button type="button" onClick="{{ p1on }}" style="cursor:pointer;border:1.5px solid var(--fg1);background:{{ p1bg }};color:{{ p1fg }};border-radius:var(--r-pill);padding:13px 20px;font-size:var(--fs-14);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;transition:background var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary);border-color:var(--primary);color:#fff" style-active="transform:scale(0.97)">{{ p1txt }}</button>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;border:1.5px solid var(--border);border-radius:var(--r-pill);padding:6px 8px">
+            <button type="button" onClick="{{ p1dec }}" aria-label="Quitar uno" style="cursor:pointer;width:38px;height:38px;flex:none;border-radius:50%;border:none;background:var(--bg-muted);color:var(--fg1);font-size:var(--fs-20);font-weight:700;line-height:1;transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-soft);color:var(--primary)" style-active="transform:scale(0.94)">−</button>
+            <span style="font-size:var(--fs-14);font-weight:700;color:{{ p1fg }};text-align:center;flex:1">{{ p1txt }}</span>
+            <button type="button" onClick="{{ p1inc }}" aria-label="Añadir uno" style="cursor:pointer;width:38px;height:38px;flex:none;border-radius:50%;border:none;background:var(--primary);color:#fff;font-size:var(--fs-20);font-weight:700;line-height:1;transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-hover)" style-active="transform:scale(0.94)">+</button>
+          </div>
         </div>
       </div>
 
@@ -258,7 +267,11 @@
             <li style="display:flex;gap:10px;font-size:var(--fs-14);line-height:1.45;color:var(--fg2)"><span style="color:var(--primary);font-weight:800">·</span>Ración para compartir</li>
             <li style="display:flex;gap:10px;font-size:var(--fs-14);line-height:1.45;color:var(--fg2)"><span style="color:var(--primary);font-weight:800">·</span>4 cervezas</li>
           </ul>
-          <button type="button" onClick="{{ p2on }}" style="cursor:pointer;border:1.5px solid var(--fg1);background:{{ p2bg }};color:{{ p2fg }};border-radius:var(--r-pill);padding:13px 20px;font-size:var(--fs-14);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;transition:background var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary);border-color:var(--primary);color:#fff" style-active="transform:scale(0.97)">{{ p2txt }}</button>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;border:1.5px solid var(--border);border-radius:var(--r-pill);padding:6px 8px">
+            <button type="button" onClick="{{ p2dec }}" aria-label="Quitar uno" style="cursor:pointer;width:38px;height:38px;flex:none;border-radius:50%;border:none;background:var(--bg-muted);color:var(--fg1);font-size:var(--fs-20);font-weight:700;line-height:1;transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-soft);color:var(--primary)" style-active="transform:scale(0.94)">−</button>
+            <span style="font-size:var(--fs-14);font-weight:700;color:{{ p2fg }};text-align:center;flex:1">{{ p2txt }}</span>
+            <button type="button" onClick="{{ p2inc }}" aria-label="Añadir uno" style="cursor:pointer;width:38px;height:38px;flex:none;border-radius:50%;border:none;background:var(--primary);color:#fff;font-size:var(--fs-20);font-weight:700;line-height:1;transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-hover)" style-active="transform:scale(0.94)">+</button>
+          </div>
         </div>
       </div>
 
@@ -278,7 +291,11 @@
             <li style="display:flex;gap:10px;font-size:var(--fs-14);line-height:1.45;color:var(--fg2)"><span style="color:var(--primary);font-weight:800">·</span>Bebida incluida</li>
             <li style="display:flex;gap:10px;font-size:var(--fs-14);line-height:1.45;color:var(--fg2)"><span style="color:var(--primary);font-weight:800">·</span>Acceso al Beauty Corner</li>
           </ul>
-          <button type="button" onClick="{{ p3on }}" style="cursor:pointer;border:1.5px solid var(--fg1);background:{{ p3bg }};color:{{ p3fg }};border-radius:var(--r-pill);padding:13px 20px;font-size:var(--fs-14);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;transition:background var(--dur-fast) var(--ease-out),color var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary);border-color:var(--primary);color:#fff" style-active="transform:scale(0.97)">{{ p3txt }}</button>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;border:1.5px solid var(--border);border-radius:var(--r-pill);padding:6px 8px">
+            <button type="button" onClick="{{ p3dec }}" aria-label="Quitar uno" style="cursor:pointer;width:38px;height:38px;flex:none;border-radius:50%;border:none;background:var(--bg-muted);color:var(--fg1);font-size:var(--fs-20);font-weight:700;line-height:1;transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-soft);color:var(--primary)" style-active="transform:scale(0.94)">−</button>
+            <span style="font-size:var(--fs-14);font-weight:700;color:{{ p3fg }};text-align:center;flex:1">{{ p3txt }}</span>
+            <button type="button" onClick="{{ p3inc }}" aria-label="Añadir uno" style="cursor:pointer;width:38px;height:38px;flex:none;border-radius:50%;border:none;background:var(--primary);color:#fff;font-size:var(--fs-20);font-weight:700;line-height:1;transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-hover)" style-active="transform:scale(0.94)">+</button>
+          </div>
         </div>
       </div>
     </div>
@@ -296,9 +313,15 @@
             <span style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.72)">Noche</span>
             <span style="font-size:var(--fs-14);font-weight:800;color:#fff">{{ fechaSelTxt }}</span>
           </div>
+          <sc-for list="{{ lineas }}" as="l" hint-placeholder-count="2">
+            <div style="display:flex;justify-content:space-between;gap:16px;background:rgba(255,255,255,0.07);border-radius:var(--r-md);padding:16px 18px;border:1px solid rgba(255,255,255,0.22)">
+              <span style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.72)">{{ l.etiqueta }}</span>
+              <span style="font-size:var(--fs-14);font-weight:800;color:#fff">{{ l.importe }}</span>
+            </div>
+          </sc-for>
           <div style="display:flex;justify-content:space-between;gap:16px;background:rgba(255,255,255,0.07);border-radius:var(--r-md);padding:16px 18px;border:1px solid rgba(255,255,255,0.22)">
-            <span style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.72)">Pack</span>
-            <span style="font-size:var(--fs-14);font-weight:800;color:#fff">{{ packSelTxt }}</span>
+            <span style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.72)">Comensales</span>
+            <span style="font-size:var(--fs-14);font-weight:800;color:#fff">{{ comensalesTxt }}</span>
           </div>
           <div style="display:flex;justify-content:space-between;gap:16px;background:rgba(255,255,255,0.07);border-radius:var(--r-md);padding:16px 18px;border:1px solid rgba(255,255,255,0.22)">
             <span style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.72)">Total estimado</span>
@@ -348,29 +371,21 @@
                 <option value="11 OCT">Dom 11 OCT</option>
               </select>
             </label>
-            <label style="display:flex;flex-direction:column;gap:8px">
-              <span style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg2)">Pack</span>
-              <select value="{{ packVal }}" onChange="{{ onPackChange }}" style="border:1px solid var(--border);border-radius:var(--r-md);padding:14px 16px;font-size:var(--fs-16);color:var(--fg1);background:#fff">
-                <option value="">Elige pack</option>
-                <option value="Pack Colombia">Pack Colombia · 19,90 €</option>
-                <option value="Pack Charlatana">Pack Charlatana · 24,90 €</option>
-                <option value="Pack para 2">Pack para 2 · 44,90 €</option>
-                <option value="Pack Glam">Pack Glam · 29,90 €</option>
-              </select>
-            </label>
-            <label style="display:flex;flex-direction:column;gap:8px">
-              <span style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg2)">Personas</span>
-              <select value="{{ personasVal }}" onChange="{{ onPersonasChange }}" style="border:1px solid var(--border);border-radius:var(--r-md);padding:14px 16px;font-size:var(--fs-16);color:var(--fg1);background:#fff">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="8">8</option>
-                <option value="10">10 o más</option>
-              </select>
-            </label>
+            <div style="grid-column:1 / -1;display:flex;flex-direction:column;gap:10px;border:1px solid var(--border);border-radius:var(--r-md);padding:16px 18px;background:var(--bg-muted)">
+              <span style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg2)">Tus packs</span>
+              <sc-for list="{{ lineasForm }}" as="l" hint-placeholder-count="2">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+                  <span style="font-size:var(--fs-14);font-weight:600;color:var(--fg1)">{{ l.etiqueta }}</span>
+                  <span style="display:flex;align-items:center;gap:8px">
+                    <button type="button" onClick="{{ l.dec }}" aria-label="Quitar uno" style="cursor:pointer;width:30px;height:30px;border-radius:50%;border:1px solid var(--border);background:#fff;color:var(--fg1);font-size:var(--fs-16);font-weight:700;line-height:1" style-hover="border-color:var(--primary);color:var(--primary)">−</button>
+                    <button type="button" onClick="{{ l.inc }}" aria-label="Añadir uno" style="cursor:pointer;width:30px;height:30px;border-radius:50%;border:none;background:var(--primary);color:#fff;font-size:var(--fs-16);font-weight:700;line-height:1" style-hover="background:var(--primary-hover)">+</button>
+                  </span>
+                </div>
+              </sc-for>
+              <sc-if value="{{ sinPacks }}" hint-placeholder-val="{{ false }}">
+                <p style="margin:0;font-size:var(--fs-14);color:var(--fg2)">Elige tus packs en el paso 2 — puedes combinar menús distintos para la misma noche.</p>
+              </sc-if>
+            </div>
             <label style="display:flex;flex-direction:column;gap:8px;grid-column:1 / -1">
               <span style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--fg2)">Algo que debamos saber</span>
               <textarea ref="{{ refNota }}" rows="3" placeholder="Alergias, celebraciones, silla de bebé…" style="border:1px solid var(--border);border-radius:var(--r-md);padding:14px 16px;font-size:var(--fs-16);color:var(--fg1);resize:vertical"></textarea>
@@ -457,16 +472,12 @@
     </div>
   </section>
 
-  <footer style="padding:40px clamp(20px,4vw,32px);border-top:1px solid var(--border)">
-    <div style="max-width:var(--maxw-page);margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px">
-      <img src="assets/logo-charlatana.avif" alt="La Charlatana" style="height:30px;width:auto;display:block">
-      <div style="display:flex;flex-wrap:wrap;gap:24px">
-        <a href="#fechas" style="font-size:var(--fs-14);color:var(--fg2);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary)">Fechas</a>
-        <a href="#packs" style="font-size:var(--fs-14);color:var(--fg2);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary)">Packs</a>
-        <a href="#reserva" style="font-size:var(--fs-14);color:var(--fg2);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary)">Reservas</a>
-        <a href="#llegar" style="font-size:var(--fs-14);color:var(--fg2);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary)">Cómo llegar</a>
-      </div>
-      <span class="s-caption">© 2026 La Charlatana · Madrid</span>
+  <footer style="background:#000;padding:clamp(48px,7vw,72px) clamp(20px,4vw,32px)">
+    <div style="max-width:var(--maxw-page);margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center">
+      <span style="display:inline-flex;background:#fff;border-radius:var(--r-lg);padding:22px 34px">
+        <img src="assets/logo-charlatana.avif" alt="La Charlatana" style="height:clamp(64px,9vw,104px);width:auto;display:block">
+      </span>
+      <span style="font-size:var(--fs-12);font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.6)">© 2026 Grupo La Charlatana · Madrid</span>
     </div>
   </footer>
 </div>
