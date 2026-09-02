@@ -50,7 +50,10 @@
   @media print { [data-rise], [data-pop], [data-fade] { opacity: 1 !important; transform: none !important; transition: none !important; } }
   @media (max-width: 900px) {
     [data-nav] { display: none !important; }
-    [data-hero-art] { display: none !important; }
+  }
+  @media (max-width: 600px) {
+    [data-hero] { min-height: 620px !important; }
+    [data-hero] img { object-position: 72% 32% !important; }
   }
   @media (max-width: 1180px) {
     [data-grid="packs"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
@@ -69,57 +72,51 @@
 
 <div style="min-height:100vh;background:url('assets/bg-textura.jpg') repeat center / 1200px auto, var(--bg);color:var(--fg1)">
 
-  <header style="position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(16px,3vw,32px);background:rgba(252,252,252,0.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)">
+  <header style="position:sticky;top:0;z-index:50;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:16px clamp(16px,3vw,32px);background:rgba(12,8,8,0.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.08)">
     <div style="display:flex;align-items:center;gap:14px">
-      <img src="assets/logo-charlatana.avif" alt="La Charlatana" style="height:34px;width:auto;display:block">
-      <span style="width:1px;height:26px;background:var(--border)"></span>
-      <span class="s-caption" style="text-transform:uppercase;letter-spacing:0.14em;color:var(--fg2)">Madrid 2026</span>
+      <img src="assets/logo-charlatana.avif" alt="La Charlatana" style="height:36px;width:auto;display:block">
+      <span style="width:1px;height:26px;background:rgba(255,255,255,0.18)"></span>
+      <span class="s-caption" style="text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.62)">Madrid 2026</span>
     </div>
-    <nav data-nav="1" style="display:flex;align-items:center;gap:28px">
-      <a href="#fechas" style="font-size:var(--fs-14);font-weight:600;color:var(--fg1);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary)">Fechas</a>
-      <a href="#packs" style="font-size:var(--fs-14);font-weight:600;color:var(--fg1);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary)">Packs</a>
-      <a href="#galeria" style="font-size:var(--fs-14);font-weight:600;color:var(--fg1);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary)">Galería</a>
-      <a href="#llegar" style="font-size:var(--fs-14);font-weight:600;color:var(--fg1);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary)">Cómo llegar</a>
+    <nav data-nav="1" style="display:flex;align-items:center;gap:30px">
+      <a href="#fechas" style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.88);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary-soft)">Fechas</a>
+      <a href="#packs" style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.88);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary-soft)">Packs</a>
+      <a href="#galeria" style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.88);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary-soft)">Galería</a>
+      <a href="#llegar" style="font-size:var(--fs-14);font-weight:600;color:rgba(255,255,255,0.88);transition:color var(--dur-fast) var(--ease-out)" style-hover="color:var(--primary-soft)">Cómo llegar</a>
     </nav>
-      <button type="button" onClick="{{ irAReserva }}" style="border:none;cursor:pointer;background:var(--primary);color:var(--fg-on-primary);border-radius:var(--r-pill);padding:12px 22px;font-size:var(--fs-14);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;box-shadow:var(--shadow-brand);transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-hover)" style-active="transform:scale(0.97)">Reserva tu mesa</button>
+      <button type="button" onClick="{{ irAReserva }}" style="border:none;cursor:pointer;background:var(--primary);color:var(--fg-on-primary);border-radius:var(--r-pill);padding:13px 24px;font-size:var(--fs-14);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;box-shadow:var(--shadow-brand);transition:background var(--dur-fast) var(--ease-out)" style-hover="background:var(--primary-hover)" style-active="transform:scale(0.97)">Reserva tu mesa</button>
   </header>
 
-  <section style="position:relative;overflow:hidden;background:var(--primary);color:var(--fg-on-primary);padding:clamp(56px,9vw,96px) clamp(20px,4vw,32px) clamp(56px,8vw,88px)">
-    <div style="position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,0.22) 1.5px, transparent 1.6px);background-size:26px 26px;opacity:0.5;pointer-events:none"></div>
-    <div style="position:relative;max-width:var(--maxw-page);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(32px,5vw,64px);align-items:center">
-      <div>
+  <section data-hero="1" style="position:relative;overflow:hidden;min-height:clamp(600px,90vh,880px);display:flex;align-items:flex-end;color:#fff">
+    <div style="position:absolute;inset:0;z-index:0;background:#0a0505">
+      <img src="uploads/bg_hero_charlatana.webp" alt="Barra y mesa de La Charlatana bajo el rótulo de neón del local" style="width:100%;height:100%;object-fit:cover;object-position:62% 34%;display:block;opacity:0.92">
+      <div style="position:absolute;inset:0;background-image:linear-gradient(100deg, rgba(4,2,2,0.92) 0%, rgba(4,2,2,0.6) 40%, rgba(4,2,2,0.2) 72%, rgba(4,2,2,0.08) 100%), linear-gradient(0deg, rgba(4,2,2,0.92) 0%, rgba(4,2,2,0.35) 38%, rgba(4,2,2,0.05) 62%)"></div>
+    </div>
+    <div style="position:relative;z-index:1;max-width:var(--maxw-page);margin:0 auto;width:100%;padding:clamp(120px,16vw,168px) clamp(20px,4vw,32px) clamp(56px,7vw,80px)">
+      <div style="max-width:640px">
         <div style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,0.5);border-radius:var(--r-pill);padding:7px 16px;margin-bottom:28px">
           <span style="width:8px;height:8px;border-radius:50%;background:#fff;animation:pulseDot 1.4s var(--ease-std) infinite"></span>
           <span style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.16em;text-transform:uppercase">Reserva anticipada abierta</span>
         </div>
-        <h1 style="margin:0;font-family:var(--font-display);font-weight:900;font-style:italic;font-size:clamp(2.1rem,4.6vw,4rem);line-height:1;letter-spacing:-0.03em;text-wrap:balance">PA’PASARLA<br>BIEN RICO<br><span style="font-weight:500;font-style:normal;font-size:0.6em;letter-spacing:0.02em">x Grupo La Charlatana</span></h1>
-        <p style="margin:18px 0 0;max-width:46ch;font-size:var(--fs-20);line-height:1.6;color:rgba(255,255,255,0.9);text-wrap:pretty">12 noches de concierto, 12 noches de cena. Elige tu fecha, elige tu pack y siéntate: nosotros ponemos la mesa, la cerveza y el ruido.</p>
+        <h1 style="margin:0;font-family:var(--font-display);font-weight:900;font-style:italic;font-size:clamp(2.6rem,6vw,4.75rem);line-height:0.96;letter-spacing:-0.03em;text-wrap:balance;text-shadow:0 4px 24px rgba(0,0,0,0.35)">PA’PASARLA<br>BIEN RICO<br><span style="font-weight:500;font-style:normal;font-size:0.55em;letter-spacing:0.02em">x Grupo La Charlatana</span></h1>
+        <p style="margin:20px 0 0;max-width:46ch;font-size:var(--fs-20);line-height:1.6;color:rgba(255,255,255,0.92);text-wrap:pretty">12 noches de concierto, 12 noches de cena. Elige tu fecha, elige tu pack y siéntate: nosotros ponemos la mesa, la cerveza y el ruido.</p>
         <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:36px">
-          <button type="button" onClick="{{ irAFechas }}" style="border:none;cursor:pointer;background:#fff;color:var(--primary);border-radius:var(--r-pill);padding:18px 34px;font-size:var(--fs-16);font-weight:800;letter-spacing:0.06em;text-transform:uppercase;box-shadow:0 12px 28px rgba(0,0,0,0.18);transition:transform var(--dur-fast) var(--ease-out)" style-hover="transform:translateY(-2px)" style-active="transform:scale(0.97)">Reserva tu mesa →</button>
-          <button type="button" onClick="{{ irAPacks }}" style="cursor:pointer;background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.7);border-radius:var(--r-pill);padding:18px 30px;font-size:var(--fs-16);font-weight:700;transition:background var(--dur-fast) var(--ease-out)" style-hover="background:rgba(255,255,255,0.14)">Ver los packs</button>
+          <button type="button" onClick="{{ irAFechas }}" style="border:none;cursor:pointer;background:#fff;color:var(--primary);border-radius:var(--r-pill);padding:18px 34px;font-size:var(--fs-16);font-weight:800;letter-spacing:0.06em;text-transform:uppercase;box-shadow:0 12px 28px rgba(0,0,0,0.35);transition:transform var(--dur-fast) var(--ease-out)" style-hover="transform:translateY(-2px)" style-active="transform:scale(0.97)">Reserva tu mesa →</button>
+          <button type="button" onClick="{{ irAPacks }}" style="cursor:pointer;background:rgba(0,0,0,0.25);color:#fff;border:1.5px solid rgba(255,255,255,0.7);border-radius:var(--r-pill);padding:18px 30px;font-size:var(--fs-16);font-weight:700;backdrop-filter:blur(4px);transition:background var(--dur-fast) var(--ease-out)" style-hover="background:rgba(255,255,255,0.18)">Ver los packs</button>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:40px;margin-top:44px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.3)" data-hero-stats="1">
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,40px);margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.25)" data-hero-stats="1">
           <div>
             <div style="font-family:var(--font-display);font-weight:900;font-size:var(--fs-36);line-height:1">12</div>
-            <div style="font-size:var(--fs-12);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-top:4px">Noches de concierto</div>
+            <div style="font-size:var(--fs-12);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-top:4px">Noches de concierto</div>
           </div>
           <div>
             <div style="font-family:var(--font-display);font-weight:900;font-size:var(--fs-36);line-height:1">4</div>
-            <div style="font-size:var(--fs-12);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-top:4px">Packs de cena</div>
+            <div style="font-size:var(--fs-12);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-top:4px">Packs de cena</div>
           </div>
           <div>
             <div style="font-family:var(--font-display);font-weight:900;font-size:var(--fs-36);line-height:1">19,90 €</div>
-            <div style="font-size:var(--fs-12);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.8);margin-top:4px">Desde, por persona</div>
+            <div style="font-size:var(--fs-12);font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.75);margin-top:4px">Desde, por persona</div>
           </div>
-        </div>
-      </div>
-      <div data-hero-art="1" style="position:relative">
-        <div style="position:relative;border-radius:var(--r-xl);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,0.28);aspect-ratio:4/5;background:#000">
-          <img src="assets/plato-chuleton.jpg" alt="Chuletón con patatas" style="width:100%;height:100%;object-fit:cover;display:block">
-        </div>
-        <div style="position:absolute;left:-24px;bottom:32px;background:#fff;color:var(--fg1);border-radius:var(--r-lg);padding:16px 20px;box-shadow:var(--shadow-lg)">
-          <div style="font-size:var(--fs-12);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--primary)">Cena + concierto</div>
-          <div style="font-family:var(--font-display);font-weight:700;font-size:var(--fs-18);margin-top:4px">18 SEP — 11 OCT</div>
         </div>
       </div>
     </div>
@@ -413,7 +410,7 @@
           <img src="assets/plato-noodles.jpg" alt="Salteado de noodles" style="width:100%;height:100%;object-fit:cover;display:block">
         </div>
         <div style="grid-column:span 2;border-radius:var(--r-lg);overflow:hidden;background:var(--bg-muted);position:relative">
-          <image-slot id="galeria-sala" shape="rect" style="position:absolute;inset:0;width:100%;height:100%;display:block" placeholder="Foto de la sala llena una noche de concierto"></image-slot>
+          <image-slot id="galeria-sala" shape="rect" src="uploads/bg_hero_charlatana.webp" style="position:absolute;inset:0;width:100%;height:100%;display:block" placeholder="Foto de la sala llena una noche de concierto"></image-slot>
         </div>
       </div>
     </section>
@@ -493,7 +490,7 @@ const PACKS = [
 ];
 
 class Component extends DCLogic {
-  state = { fecha: "", pack: "", personas: "2", enviado: false, datos: null };
+  state = { fecha: "", qty: [0, 0, 0, 0], enviado: false, datos: null };
 
   constructor(props) {
     super(props);
@@ -501,6 +498,34 @@ class Component extends DCLogic {
     this.refEmail = React.createRef();
     this.refTel = React.createRef();
     this.refNota = React.createRef();
+  }
+
+  incPack(i) {
+    const qty = this.state.qty.slice();
+    qty[i] = Math.min(20, qty[i] + 1);
+    this.setState({ qty });
+  }
+
+  decPack(i) {
+    const qty = this.state.qty.slice();
+    qty[i] = Math.max(0, qty[i] - 1);
+    this.setState({ qty });
+  }
+
+  lineas() {
+    return PACKS
+      .map((p, i) => ({ p, i, q: this.state.qty[i] }))
+      .filter(l => l.q > 0)
+      .map(l => ({
+        etiqueta: l.q + "× " + l.p.n,
+        importe: (l.p.p * l.q).toFixed(2).replace(".", ",") + " €",
+        dec: () => this.decPack(l.i),
+        inc: () => this.incPack(l.i)
+      }));
+  }
+
+  comensales() {
+    return PACKS.reduce((n, p, i) => n + this.state.qty[i] * (p.porPersona ? 1 : 2), 0);
   }
 
   componentDidMount() {
@@ -540,21 +565,17 @@ class Component extends DCLogic {
   }
 
   total() {
-    const pack = PACKS.find(p => p.n === this.state.pack);
-    if (!pack) return "—";
-    const n = parseInt(this.state.personas, 10) || 1;
-    const t = pack.porPersona ? pack.p * n : pack.p * Math.max(1, Math.round(n / 2));
+    const t = PACKS.reduce((sum, p, i) => sum + p.p * this.state.qty[i], 0);
     return t.toFixed(2).replace(".", ",") + " €";
   }
 
   renderVals() {
+    const lineas = this.lineas();
+    const totalQty = this.state.qty.reduce((a, b) => a + b, 0);
     const v = {
       fechaSelTxt: this.state.fecha || "Sin elegir",
-      packSelTxt: this.state.pack || "Sin elegir",
-      totalTxt: this.total(),
+      totalTxt: totalQty ? this.total() : "—",
       fechaVal: this.state.fecha,
-      packVal: this.state.pack,
-      personasVal: this.state.personas,
       enviado: this.state.enviado,
       noEnviado: !this.state.enviado,
       ctaTexto: this.props.ctaTexto ?? "Reserva tu mesa",
@@ -569,19 +590,21 @@ class Component extends DCLogic {
       irAFechas: () => this.scrollA("fechas"),
       irAPacks: () => this.scrollA("packs"),
       onFechaChange: e => this.setState({ fecha: e.target.value }),
-      onPackChange: e => this.setState({ pack: e.target.value }),
-      onPersonasChange: e => this.setState({ personas: e.target.value }),
-      otraReserva: () => this.setState({ enviado: false, datos: null }),
+      otraReserva: () => this.setState({ enviado: false, datos: null, qty: [0, 0, 0, 0], fecha: "" }),
+      lineas: lineas,
+      lineasForm: lineas,
+      sinPacks: totalQty === 0,
+      comensalesTxt: totalQty ? (this.comensales() + " comensales") : "—",
       onSubmit: e => {
         e.preventDefault();
         const nombre = this.refNombre.current ? this.refNombre.current.value : "";
         const email = this.refEmail.current ? this.refEmail.current.value : "";
-        if (!this.state.fecha || !this.state.pack) { this.scrollA("fechas"); return; }
+        if (!this.state.fecha || totalQty === 0) { this.scrollA(this.state.fecha ? "packs" : "fechas"); return; }
         this.setState({ enviado: true, datos: { nombre, email } });
       },
       nombreEnviado: this.state.datos ? (this.state.datos.nombre || "").split(" ")[0] : "",
       emailEnviado: this.state.datos ? this.state.datos.email : "",
-      resumenTxt: this.state.pack + " para " + this.state.personas + " el " + this.state.fecha
+      resumenTxt: (lineas.map(l => l.etiqueta).join(", ") || "tu pack") + " para el " + this.state.fecha
     };
 
     FECHAS.forEach((f, i) => {
@@ -593,12 +616,13 @@ class Component extends DCLogic {
     });
 
     PACKS.forEach((p, i) => {
-      const sel = this.state.pack === p.n;
+      const q = this.state.qty[i];
+      const sel = q > 0;
       v["p" + i + "bd"] = sel ? "var(--primary)" : "#f0f0f0";
-      v["p" + i + "bg"] = sel ? "var(--fg1)" : "transparent";
-      v["p" + i + "fg"] = sel ? "#fff" : "var(--fg1)";
-      v["p" + i + "txt"] = sel ? "Pack elegido ✓" : "Elegir pack";
-      v["p" + i + "on"] = () => { this.setState({ pack: p.n }); this.scrollA("reserva"); };
+      v["p" + i + "fg"] = sel ? "var(--primary)" : "var(--fg1)";
+      v["p" + i + "txt"] = String(q);
+      v["p" + i + "dec"] = () => this.decPack(i);
+      v["p" + i + "inc"] = () => this.incPack(i);
     });
 
     return v;
